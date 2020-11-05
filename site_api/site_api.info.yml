@@ -1,0 +1,6 @@
+name: Custom Site API  
+type: module  
+description: This module will provide additional field for Site API under Site Basic Settings.
+core: 8.x  
+package: Custom 
+core_version_requirement: ^8 || ^9

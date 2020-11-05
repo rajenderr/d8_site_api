@@ -1,0 +1,33 @@
+<?php
+/**
+ * @file
+ * Contains site_api module.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * hook_form_alter().
+ */
+function site_api_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // Check for site form
+  if ($form_id == 'system_site_information_settings') {
+    
+    // Get site API key value 
+    $site_api_key = \Drupal::config('system.site')->get('siteapikey');  
+    if ($site_api_key) {
+      // Change label of submit button
+      $form['actions']['submit']['#value'] = t('Update Configuration');  
+    }  
+    $form['#submit'] = array_merge($form['#submit'], ['custom_site_api_submit_handler']);
+    //echo"<pre>";print_r($form['#submit']);die;
+  }
+  
+}
+
+function custom_site_api_submit_handler($form, FormStateInterface $form_state) {
+  $site_api_key = \Drupal::config('system.site')->get('siteapikey');  
+  if ($site_api_key) {
+    drupal_set_message(t('Site API Key has been saved with value: '.$site_api_key.'.'), 'status', TRUE);
+  }
+}
