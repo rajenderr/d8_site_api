@@ -1,0 +1,76 @@
+push a git branch to remote
+
+git push origin newbranchname
+-----------------------------------------------------
+
+create a tag
+
+git tag -a tagname -m "comments"
+
+---------------------------------------------
+
+You can't put a new commit into an existing tag without breaking an important Git guideline: Never(*) modify commits that you have published.
+
+Tags in Git aren't meant to be mutable. Once you push a tag out there, leave it alone.
+
+You can, however, add some changes on top of v1.1 and release something like v1.1.1 or v1.2. One way of doing that would be
+
+# Create a new branch from tag v1.1
+git checkout -b newbranch v1.1
+
+# Do some work and commit it
+
+# Create a new tag from your work
+git tag -a -m "Tag version 1.1.1, a bugfix release" v1.1.1
+
+----------------------------------------------
+Identify the branch name on a enviroment with the hlep of tag deplpoyed to it.
+
+2 examples below -
+
+$ git branch -a --contains tags/drupal.8.9.3.without.settings.php.14.Aug.2020
+
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/master
+
+$ git branch -a --contains tags/20200604.03
+
+ (HEAD detached at 20200604.03)
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/master
+
+---------------------------------------------
+see details of a tag
+
+git show tagname 
+
+---------------------------------------------
+
+see all tags
+
+git tag
+
+----------------------------------------------
+
+search a tag
+
+git tag -l "tagname*"
+
+---------------------------------------------
+push tag to acquia cloud
+
+git push origin tagname
+
+----------------------------------------------------
+
+checkout the tag you want like so:
+
+git checkout tags/1.1.4
+
+-----------------------------------------------------
+
+
+Save the file in the editor. If it's Emacs: CTRLX CTRLS to save then CTRLX CTRLC to quit or 
+if it's vi: :wq
+
+------------------------------------------------------
